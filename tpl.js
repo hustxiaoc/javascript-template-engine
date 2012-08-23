@@ -59,7 +59,7 @@
                 var helper=[]
                 if(this.helper){
                    for(var h in this.helper){
-                     helper.push('var '+h+'='this.helper["'+h+'"]'); //helper.push('var '+h+'='+this.helper[h])<br>                                           
+                     helper.push('var '+h+'='this.helper["'+h+'"]'); //helper.push('var '+h+'='+this.helper[h])                                         
                    }
                 }
                 this.compiled=new Function("data",helper.join(";")+';var temp=[];\n'+Template.parse(this)+'\n return  temp.join("");');
