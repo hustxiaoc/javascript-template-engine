@@ -1,19 +1,19 @@
 (function(w){
-          var quote=function (str) {
-                        str = str.replace(/[\x00-\x1f\\]/g, function (chr) {
-                            var special = metaObject[chr];
-                            return special ? special : '\\u' + ('0000' + chr.charCodeAt(0).toString(16)).slice(-4)
-                        });
-                        return str.replace(/"/g, '\\"') ;
-                },
-                metaObject = {
-                    '\b': '\\b',
-                    '\t': '\\t',
-                    '\n': '\\n',
-                    '\f': '\\f',
-                    '\r': '\\r',
-                    '\\': '\\\\'
-                };
+	  var quote=function (str) {
+					str = str.replace(/[\x00-\x1f\\]/g, function (chr) {
+						var special = metaObject[chr];
+						return special ? special : '\\u' + ('0000' + chr.charCodeAt(0).toString(16)).slice(-4)
+					});
+					return str.replace(/"/g, '\\"') ;
+			},
+			metaObject = {
+				'\b': '\\b',
+				'\t': '\\t',
+				'\n': '\\n',
+				'\f': '\\f',
+				'\r': '\\r',
+				'\\': '\\\\'
+			};
  
     w.Template=Template||{};
     function Template(options,helper){
@@ -28,7 +28,8 @@
            }else{
               temp=self.tpl.split(new RegExp('(?='+self.left+')|('+self.right+')'))
            }
-            temp.filter(function(k,v){
+		   
+		    $(temp).filter(temp,function(v){
                    return !(new RegExp(self.right)).test(v);
             }).each(
               function(k,v){
@@ -70,18 +71,4 @@
             return this.compile().call(this,data||this.data);//this.compile()(data||this.data);
         }
     }
-})(this);
- Array.prototype.filter=function(fn){
-   var temp=[];
-   for(var i=0,l=this.length;i<l;i++){
-      this[i]&&fn.call(this,i,this[i])&&temp.push(this[i]);
-   }
-  return temp;
-}
-Array.prototype.each=function(fn){
-   var temp=[];
-   for(var i=0,l=this.length;i<l;i++){
-     fn.call(this,i,this[i]);
-   }
-   return this;
-}
+})($);
